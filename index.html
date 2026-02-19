@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Claude Code for Product Marketing Managers</title>
+    <title>Claude Code — Ship Faster Without Filing a Ticket</title>
     <style>
         * {
             margin: 0;
@@ -22,33 +22,38 @@
         .hero {
             background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
             color: #fff;
-            padding: 100px 24px 120px;
+            padding: 100px 24px 110px;
             text-align: center;
         }
 
-        .hero-badge {
+        .hero-objection {
             display: inline-block;
-            background: rgba(255, 255, 255, 0.12);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 20px;
-            padding: 6px 16px;
-            font-size: 0.85rem;
-            letter-spacing: 0.5px;
-            margin-bottom: 28px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-radius: 8px;
+            padding: 10px 20px;
+            font-size: 1rem;
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 32px;
         }
 
         .hero h1 {
-            font-size: clamp(2.2rem, 5vw, 3.6rem);
+            font-size: clamp(2.2rem, 5vw, 3.4rem);
             font-weight: 700;
             line-height: 1.15;
-            max-width: 720px;
+            max-width: 760px;
             margin: 0 auto 24px;
+        }
+
+        .hero h1 span {
+            color: #7eb8f7;
         }
 
         .hero p {
             font-size: 1.2rem;
-            color: rgba(255, 255, 255, 0.78);
-            max-width: 560px;
+            color: rgba(255, 255, 255, 0.75);
+            max-width: 580px;
             margin: 0 auto;
         }
 
@@ -82,90 +87,377 @@
             margin-bottom: 56px;
         }
 
-        /* Cards */
-        .cards {
+        /* Pain point cards */
+        .pains {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 24px;
         }
 
-        .card {
+        .pain {
             background: #fff;
             border: 1px solid #e8e8e8;
             border-radius: 12px;
-            padding: 36px 28px;
+            padding: 32px 28px;
             transition: box-shadow 0.2s ease;
         }
 
-        .card:hover {
+        .pain:hover {
             box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
         }
 
-        .card-icon {
-            width: 48px;
-            height: 48px;
-            background: #eef2ff;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.4rem;
-            margin-bottom: 20px;
-        }
-
-        .card h3 {
-            font-size: 1.15rem;
-            font-weight: 600;
-            margin-bottom: 10px;
-        }
-
-        .card p {
+        .pain-quote {
             font-size: 0.95rem;
+            font-style: italic;
+            color: #888;
+            margin-bottom: 16px;
+            padding-left: 14px;
+            border-left: 3px solid #ddd;
+        }
+
+        .pain h3 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .pain p {
+            font-size: 0.92rem;
             color: #666;
             line-height: 1.65;
         }
 
-        /* Why it matters — alternating layout */
-        .why-section {
+        /* Before / After */
+        .before-after-section {
             background: #fff;
         }
 
-        .benefits {
+        .comparisons {
             display: flex;
             flex-direction: column;
-            gap: 48px;
+            gap: 36px;
         }
 
-        .benefit {
-            display: flex;
-            gap: 28px;
-            align-items: flex-start;
-        }
-
-        .benefit-number {
-            flex-shrink: 0;
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            background: #0f3460;
-            color: #fff;
-            display: flex;
+        .comparison {
+            display: grid;
+            grid-template-columns: 1fr 48px 1fr;
             align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 1.1rem;
+            gap: 0;
+            background: #f8f9fb;
+            border-radius: 12px;
+            overflow: hidden;
         }
 
-        .benefit h3 {
-            font-size: 1.1rem;
-            font-weight: 600;
+        .comp-before, .comp-after {
+            padding: 28px 32px;
+        }
+
+        .comp-before {
+            background: #fdf2f2;
+        }
+
+        .comp-after {
+            background: #f0f7f0;
+        }
+
+        .comp-arrow {
+            text-align: center;
+            font-size: 1.3rem;
+            color: #999;
+            background: #f8f9fb;
+        }
+
+        .comp-label {
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
             margin-bottom: 6px;
         }
 
-        .benefit p {
-            font-size: 0.95rem;
+        .comp-before .comp-label { color: #c0392b; }
+        .comp-after .comp-label { color: #27ae60; }
+
+        .comp-before h3, .comp-after h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .comp-before p, .comp-after p {
+            font-size: 0.88rem;
             color: #666;
-            max-width: 560px;
+        }
+
+        /* Calculator section */
+        .calc-section {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: #fff;
+        }
+
+        .calc-section .section-label {
+            color: #7eb8f7;
+        }
+
+        .calc-section h2 {
+            color: #fff;
+        }
+
+        .calc-section > .section > p {
+            color: rgba(255, 255, 255, 0.65);
+        }
+
+        .calc-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: start;
+        }
+
+        .calc-sliders {
+            display: flex;
+            flex-direction: column;
+            gap: 28px;
+        }
+
+        .slider-group label {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            font-size: 0.92rem;
+            font-weight: 500;
+            margin-bottom: 10px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .slider-group label span {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #7eb8f7;
+            min-width: 60px;
+            text-align: right;
+        }
+
+        .slider-group input[type="range"] {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 100%;
+            height: 6px;
+            border-radius: 3px;
+            background: rgba(255, 255, 255, 0.15);
+            outline: none;
+            cursor: pointer;
+        }
+
+        .slider-group input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #7eb8f7;
+            border: 3px solid #fff;
+            cursor: pointer;
+            transition: transform 0.1s ease;
+        }
+
+        .slider-group input[type="range"]::-webkit-slider-thumb:hover {
+            transform: scale(1.15);
+        }
+
+        .slider-group input[type="range"]::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #7eb8f7;
+            border: 3px solid #fff;
+            cursor: pointer;
+        }
+
+        .slider-desc {
+            font-size: 0.78rem;
+            color: rgba(255, 255, 255, 0.4);
+            margin-top: 6px;
+        }
+
+        /* Results panel */
+        .calc-results {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 40px 36px;
+            position: sticky;
+            top: 32px;
+        }
+
+        .result-primary {
+            text-align: center;
+            margin-bottom: 32px;
+            padding-bottom: 28px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .result-primary .number {
+            font-size: 3.6rem;
+            font-weight: 800;
+            line-height: 1;
+            color: #7eb8f7;
+        }
+
+        .result-primary .label {
+            font-size: 1.05rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-top: 8px;
+        }
+
+        .result-primary .empty-state {
+            font-size: 1.05rem;
+            color: rgba(255, 255, 255, 0.45);
+            font-style: italic;
+            padding: 16px 0;
+        }
+
+        .result-secondary {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 16px;
+            text-align: center;
+            margin-bottom: 28px;
+        }
+
+        .result-secondary .stat-num {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .result-secondary .stat-label {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.5);
+            margin-top: 2px;
+        }
+
+        /* Breakdown bars */
+        .result-breakdown {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 28px;
+        }
+
+        .breakdown-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .breakdown-label {
+            font-size: 0.78rem;
+            color: rgba(255, 255, 255, 0.6);
+            width: 110px;
+            flex-shrink: 0;
+            text-align: right;
+        }
+
+        .breakdown-bar-track {
+            flex: 1;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .breakdown-bar-fill {
+            height: 100%;
+            background: #7eb8f7;
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+
+        .breakdown-value {
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.7);
+            width: 40px;
+            flex-shrink: 0;
+        }
+
+        /* Contextual CTA */
+        .calc-cta-message {
+            text-align: center;
+            font-size: 0.92rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 20px;
+            min-height: 22px;
+            transition: opacity 0.2s ease;
+        }
+
+        .calc-cta-btn {
+            display: block;
+            text-align: center;
+            background: #fff;
+            color: #0f3460;
+            font-size: 0.95rem;
+            font-weight: 600;
+            padding: 12px 28px;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+        }
+
+        .calc-cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.3);
+        }
+
+        @media (max-width: 700px) {
+            .calc-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .calc-results {
+                position: static;
+            }
+
+            .result-primary .number {
+                font-size: 2.8rem;
+            }
+
+            .breakdown-label {
+                width: 80px;
+                font-size: 0.72rem;
+            }
+        }
+
+        /* Objection section */
+        .objection-section {
+            background: #f4f6fa;
+        }
+
+        .objection-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+        }
+
+        .objection-card {
+            background: #fff;
+            border: 1px solid #e4e7ed;
+            border-radius: 12px;
+            padding: 32px 28px;
+        }
+
+        .objection-card h3 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #1a1a2e;
+        }
+
+        .objection-card p {
+            font-size: 0.92rem;
+            color: #666;
+            line-height: 1.65;
         }
 
         /* CTA */
@@ -185,8 +477,39 @@
         .cta p {
             color: rgba(255, 255, 255, 0.75);
             font-size: 1.1rem;
-            max-width: 500px;
+            max-width: 520px;
             margin: 0 auto 36px;
+        }
+
+        .cta-steps {
+            display: flex;
+            justify-content: center;
+            gap: 48px;
+            margin-bottom: 44px;
+            flex-wrap: wrap;
+        }
+
+        .cta-step {
+            text-align: center;
+        }
+
+        .cta-step-num {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+        }
+
+        .cta-step p {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin: 0;
         }
 
         .btn {
@@ -225,11 +548,13 @@
             color: #999;
         }
 
-        @media (max-width: 600px) {
+        @media (max-width: 700px) {
             .hero { padding: 72px 20px 88px; }
             .section { padding: 64px 20px; }
             .cta { padding: 64px 20px; }
-            .benefit { flex-direction: column; gap: 12px; }
+            .comparison { grid-template-columns: 1fr; }
+            .comp-arrow { padding: 8px 0; }
+            .cta-steps { gap: 24px; }
             .btn-secondary { margin-left: 0; margin-top: 12px; }
         }
     </style>
@@ -238,81 +563,296 @@
 
     <!-- Hero -->
     <section class="hero">
-        <div class="hero-badge">Anthropic's agentic coding tool</div>
-        <h1>Claude Code gives PMMs a superpower</h1>
-        <p>Build prototypes, analyze data, and ship landing pages yourself — without waiting on engineering.</p>
+        <div class="hero-objection">"I'm not a developer &mdash; why would I need a coding tool?"</div>
+        <h1>Stop waiting on engineering.<br><span>Start shipping yourself.</span></h1>
+        <p>Claude Code lets product marketers build landing pages, pull competitive intel, and create interactive demos &mdash; all by typing plain English. No code skills required.</p>
     </section>
 
-    <!-- What It Does -->
+    <!-- Sound Familiar? -->
     <section class="section">
-        <div class="section-label">What It Does</div>
-        <h2>An AI coding agent that lives in your terminal</h2>
-        <p>Claude Code understands entire codebases, writes and edits files, runs commands, and iterates until the job is done — all from a single conversation.</p>
-        <div class="cards">
-            <div class="card">
-                <div class="card-icon">&#9997;</div>
-                <h3>Writes &amp; edits code</h3>
-                <p>Describe what you need in plain English. Claude Code creates files, edits existing ones, and handles the technical details so you don't have to.</p>
+        <div class="section-label">Sound Familiar?</div>
+        <h2>Your week shouldn't look like this</h2>
+        <p>You're measured on pipeline, content velocity, and competitive wins. But half your time disappears into waiting, formatting, and workarounds.</p>
+        <div class="pains">
+            <div class="pain">
+                <div class="pain-quote">"Can you update the headline on the launch page?"</div>
+                <h3>A Jira ticket for a one-line change</h3>
+                <p>You filed it Monday. Engineering estimated it Wednesday. It shipped the following sprint. The campaign window closed.</p>
             </div>
-            <div class="card">
-                <div class="card-icon">&#128270;</div>
-                <h3>Understands full projects</h3>
-                <p>It reads across an entire codebase to understand context — how components connect, what conventions are used, and where to make changes.</p>
+            <div class="pain">
+                <div class="pain-quote">"We need updated battlecards by Friday."</div>
+                <h3>Competitor pricing in 14 open tabs</h3>
+                <p>You're manually copying numbers from pricing pages into a spreadsheet, reformatting it for slides, and praying nothing changed overnight.</p>
             </div>
-            <div class="card">
-                <div class="card-icon">&#9881;</div>
-                <h3>Runs &amp; tests automatically</h3>
-                <p>Claude Code executes build commands, runs tests, and fixes issues in a loop until everything works — no copy-pasting between tools.</p>
+            <div class="pain">
+                <div class="pain-quote">"Can you show the board what the product actually does?"</div>
+                <h3>A slide deck when you need a live demo</h3>
+                <p>You know an interactive prototype would be 10x more persuasive than screenshots in a deck. But you can't build one, and design is booked through Q3.</p>
+            </div>
+            <div class="pain">
+                <div class="pain-quote">"What's our marketing-sourced pipeline this quarter?"</div>
+                <h3>Hours formatting data for the QBR</h3>
+                <p>The data exists in three places. Getting it into a clean chart for the board deck takes an entire afternoon &mdash; every single quarter.</p>
             </div>
         </div>
     </section>
 
-    <!-- Why It Matters -->
-    <section class="section why-section">
-        <div class="section-label">Why It Matters for PMMs</div>
-        <h2>Move at the speed of your ideas</h2>
-        <p>Product marketing thrives on speed and storytelling. Claude Code removes the bottleneck between having an idea and putting it in front of customers.</p>
-        <div class="benefits">
-            <div class="benefit">
-                <div class="benefit-number">1</div>
-                <div>
-                    <h3>Ship landing pages in minutes, not sprints</h3>
-                    <p>Launch pages, campaign microsites, and competitive comparison pages without filing a ticket. Go from brief to live page in a single sitting.</p>
+    <!-- Before / After -->
+    <section class="section before-after-section">
+        <div class="section-label">What Changes with Claude Code</div>
+        <h2>Same work. Fraction of the time.</h2>
+        <p>You describe what you want in plain English. Claude Code builds it, tests it, and hands you the finished result. Here's what that looks like in practice.</p>
+        <div class="comparisons">
+            <div class="comparison">
+                <div class="comp-before">
+                    <div class="comp-label">Before</div>
+                    <h3>File a ticket, wait two sprints for a landing page</h3>
+                    <p>Write a brief, wait for prioritization, review a staging link, request changes, wait again.</p>
+                </div>
+                <div class="comp-arrow">&rarr;</div>
+                <div class="comp-after">
+                    <div class="comp-label">With Claude Code</div>
+                    <h3>Describe the page, ship it in 30 minutes</h3>
+                    <p>"Build a comparison page for our product vs. Competitor X with a pricing table and a CTA." Done.</p>
                 </div>
             </div>
-            <div class="benefit">
-                <div class="benefit-number">2</div>
-                <div>
-                    <h3>Prototype interactive demos yourself</h3>
-                    <p>Build clickable product demos and interactive feature tours that sell your product — then hand polished code to engineering instead of a slide deck.</p>
+            <div class="comparison">
+                <div class="comp-before">
+                    <div class="comp-label">Before</div>
+                    <h3>Copy competitor pricing by hand every quarter</h3>
+                    <p>Open 12 tabs, screenshot pricing pages, manually type numbers into a spreadsheet, reformat for the battlecard.</p>
+                </div>
+                <div class="comp-arrow">&rarr;</div>
+                <div class="comp-after">
+                    <div class="comp-label">With Claude Code</div>
+                    <h3>"Pull pricing from these 5 competitor pages into a table"</h3>
+                    <p>Claude Code writes a script, runs it, and gives you a clean CSV. Rerun it next quarter in one click.</p>
                 </div>
             </div>
-            <div class="benefit">
-                <div class="benefit-number">3</div>
-                <div>
-                    <h3>Analyze competitive &amp; market data faster</h3>
-                    <p>Write quick scripts to scrape pricing pages, parse analyst reports, or transform spreadsheet data into charts for your next board deck.</p>
+            <div class="comparison">
+                <div class="comp-before">
+                    <div class="comp-label">Before</div>
+                    <h3>Static screenshots in a board deck</h3>
+                    <p>You know an interactive demo would land better, but there's no way you're getting eng time for a sales tool.</p>
+                </div>
+                <div class="comp-arrow">&rarr;</div>
+                <div class="comp-after">
+                    <div class="comp-label">With Claude Code</div>
+                    <h3>A clickable prototype you built yourself</h3>
+                    <p>"Create an interactive walkthrough of our onboarding flow with these three screens." Hand real code to eng, not a Figma link.</p>
                 </div>
             </div>
-            <div class="benefit">
-                <div class="benefit-number">4</div>
-                <div>
-                    <h3>Become the most technical PMM on the team</h3>
-                    <p>Understand your product's codebase firsthand. Ask Claude Code to explain how a feature works, then turn that knowledge into more credible positioning.</p>
+        </div>
+    </section>
+
+    <!-- ROI Calculator -->
+    <section class="calc-section">
+        <div class="section">
+            <div class="section-label">See Your Numbers</div>
+            <h2>How much time would you get back?</h2>
+            <p style="color: rgba(255,255,255,0.65); max-width: 620px; margin-bottom: 56px; font-size: 1.1rem;">Adjust the sliders to match your typical week. The calculator shows how many hours Claude Code would save you.</p>
+            <div class="calc-layout">
+                <div class="calc-sliders">
+                    <div class="slider-group">
+                        <label>Competitor research &amp; battlecards <span id="val-compete">4 hrs</span></label>
+                        <input type="range" id="slider-compete" min="0" max="10" value="4" step="0.5">
+                        <div class="slider-desc">Tracking pricing, features, and positioning; updating battlecards</div>
+                    </div>
+                    <div class="slider-group">
+                        <label>Landing pages &amp; web content <span id="val-pages">3 hrs</span></label>
+                        <input type="range" id="slider-pages" min="0" max="10" value="3" step="0.5">
+                        <div class="slider-desc">Creating, updating, or waiting on launch pages and microsites</div>
+                    </div>
+                    <div class="slider-group">
+                        <label>Data formatting &amp; reporting <span id="val-data">3 hrs</span></label>
+                        <input type="range" id="slider-data" min="0" max="10" value="3" step="0.5">
+                        <div class="slider-desc">Pipeline data, QBR charts, board deck slides</div>
+                    </div>
+                    <div class="slider-group">
+                        <label>Prototypes &amp; demos <span id="val-proto">2 hrs</span></label>
+                        <input type="range" id="slider-proto" min="0" max="10" value="2" step="0.5">
+                        <div class="slider-desc">Product demos, interactive walkthroughs, clickable mockups</div>
+                    </div>
+                    <div class="slider-group">
+                        <label>Writing PRDs &amp; briefs <span id="val-prds">3 hrs</span></label>
+                        <input type="range" id="slider-prds" min="0" max="8" value="3" step="0.5">
+                        <div class="slider-desc">Requirements docs, launch briefs, messaging frameworks</div>
+                    </div>
                 </div>
+                <div class="calc-results">
+                    <div class="result-primary">
+                        <div class="number" id="result-weekly">9.1</div>
+                        <div class="label" id="result-weekly-label">hours saved every week</div>
+                    </div>
+                    <div class="result-secondary" id="result-secondary">
+                        <div>
+                            <div class="stat-num" id="result-monthly">39</div>
+                            <div class="stat-label">hours / month</div>
+                        </div>
+                        <div>
+                            <div class="stat-num" id="result-yearly">455</div>
+                            <div class="stat-label">hours / year</div>
+                        </div>
+                        <div>
+                            <div class="stat-num" id="result-weeks">11.4</div>
+                            <div class="stat-label">work weeks / year</div>
+                        </div>
+                    </div>
+                    <div class="result-breakdown" id="result-breakdown">
+                        <div class="breakdown-row">
+                            <div class="breakdown-label">Comp. research</div>
+                            <div class="breakdown-bar-track"><div class="breakdown-bar-fill" id="bar-compete" style="width:0%"></div></div>
+                            <div class="breakdown-value" id="bval-compete">0h</div>
+                        </div>
+                        <div class="breakdown-row">
+                            <div class="breakdown-label">Landing pages</div>
+                            <div class="breakdown-bar-track"><div class="breakdown-bar-fill" id="bar-pages" style="width:0%"></div></div>
+                            <div class="breakdown-value" id="bval-pages">0h</div>
+                        </div>
+                        <div class="breakdown-row">
+                            <div class="breakdown-label">Data &amp; reporting</div>
+                            <div class="breakdown-bar-track"><div class="breakdown-bar-fill" id="bar-data" style="width:0%"></div></div>
+                            <div class="breakdown-value" id="bval-data">0h</div>
+                        </div>
+                        <div class="breakdown-row">
+                            <div class="breakdown-label">Prototypes</div>
+                            <div class="breakdown-bar-track"><div class="breakdown-bar-fill" id="bar-proto" style="width:0%"></div></div>
+                            <div class="breakdown-value" id="bval-proto">0h</div>
+                        </div>
+                        <div class="breakdown-row">
+                            <div class="breakdown-label">PRDs &amp; briefs</div>
+                            <div class="breakdown-bar-track"><div class="breakdown-bar-fill" id="bar-prds" style="width:0%"></div></div>
+                            <div class="breakdown-value" id="bval-prds">0h</div>
+                        </div>
+                    </div>
+                    <div class="calc-cta-message" id="calc-cta-message"></div>
+                    <a href="https://docs.anthropic.com/en/docs/claude-code/overview" class="calc-cta-btn">Try Claude Code free</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- "But I'm not a developer" -->
+    <section class="section objection-section">
+        <div class="section-label">Yes, This Is for You</div>
+        <h2>"But I'm not a developer."</h2>
+        <p>Good. Claude Code was designed for exactly that. If you can prompt ChatGPT, you already have the only skill you need.</p>
+        <div class="objection-grid">
+            <div class="objection-card">
+                <h3>You already know how to prompt</h3>
+                <p>You use ChatGPT every day for drafts, research, and brainstorming. Claude Code works the same way &mdash; you describe what you want in plain English. The only difference is the output is a working webpage instead of a text block.</p>
+            </div>
+            <div class="objection-card">
+                <h3>You can't break anything</h3>
+                <p>Claude Code runs on your local machine. It doesn't touch production. Start with a side project &mdash; a microsite, a one-pager, a data script. Zero risk, zero tickets, zero dependencies on other teams.</p>
+            </div>
+            <div class="objection-card">
+                <h3>The output is production-quality</h3>
+                <p>This isn't a toy. Claude Code generates clean, professional code that your engineering team would actually ship. You're not building a hack &mdash; you're building the real thing.</p>
+            </div>
+            <div class="objection-card">
+                <h3>Your peers are already doing this</h3>
+                <p>PMMs at other companies are shipping competitive comparison pages, building interactive product demos, and automating their battlecard workflows &mdash; without writing a line of code themselves.</p>
             </div>
         </div>
     </section>
 
     <!-- CTA -->
     <section class="cta">
-        <h2>Start building today</h2>
-        <p>Install Claude Code in under a minute and see what you can ship before your next standup.</p>
-        <a href="https://docs.anthropic.com/en/docs/claude-code/overview" class="btn">Read the docs</a>
+        <h2>Try it on one project this week</h2>
+        <p>Pick the landing page you've been waiting on, the battlecard that needs refreshing, or the demo you wish you had. See how fast you can ship it.</p>
+        <div class="cta-steps">
+            <div class="cta-step">
+                <div class="cta-step-num">1</div>
+                <p>Install in one command</p>
+            </div>
+            <div class="cta-step">
+                <div class="cta-step-num">2</div>
+                <p>Describe what you need</p>
+            </div>
+            <div class="cta-step">
+                <div class="cta-step-num">3</div>
+                <p>Ship it before standup</p>
+            </div>
+        </div>
+        <a href="https://docs.anthropic.com/en/docs/claude-code/overview" class="btn">Get started</a>
         <a href="https://github.com/anthropics/claude-code" class="btn btn-secondary">View on GitHub</a>
     </section>
 
     <footer>&copy; 2026 Anthropic. Claude Code.</footer>
+
+    <script>
+    (function () {
+        var categories = [
+            { slider: 'slider-compete', val: 'val-compete', bar: 'bar-compete', bval: 'bval-compete', reduction: 0.60 },
+            { slider: 'slider-pages',   val: 'val-pages',   bar: 'bar-pages',   bval: 'bval-pages',   reduction: 0.75 },
+            { slider: 'slider-data',    val: 'val-data',    bar: 'bar-data',    bval: 'bval-data',    reduction: 0.50 },
+            { slider: 'slider-proto',   val: 'val-proto',   bar: 'bar-proto',   bval: 'bval-proto',   reduction: 0.70 },
+            { slider: 'slider-prds',    val: 'val-prds',    bar: 'bar-prds',    bval: 'bval-prds',    reduction: 0.40 }
+        ];
+
+        var maxBarHours = 10 * 0.75; // max possible single-category savings
+
+        function fmt(n) { return n % 1 === 0 ? n.toString() : n.toFixed(1); }
+
+        function update() {
+            var totalWeekly = 0;
+            var savings = [];
+
+            for (var i = 0; i < categories.length; i++) {
+                var c = categories[i];
+                var hours = parseFloat(document.getElementById(c.slider).value);
+                var saved = hours * c.reduction;
+
+                document.getElementById(c.val).textContent = fmt(hours) + ' hrs';
+                document.getElementById(c.bar).style.width = (saved / maxBarHours * 100) + '%';
+                document.getElementById(c.bval).textContent = fmt(saved) + 'h';
+
+                totalWeekly += saved;
+                savings.push(saved);
+            }
+
+            var weeklyEl = document.getElementById('result-weekly');
+            var weeklyLabelEl = document.getElementById('result-weekly-label');
+            var secondaryEl = document.getElementById('result-secondary');
+            var msgEl = document.getElementById('calc-cta-message');
+
+            if (totalWeekly === 0) {
+                weeklyEl.textContent = '';
+                weeklyLabelEl.innerHTML = '<span class="empty-state">Adjust the sliders to see your results</span>';
+                secondaryEl.style.opacity = '0';
+                msgEl.textContent = '';
+                return;
+            }
+
+            secondaryEl.style.opacity = '1';
+            weeklyEl.textContent = fmt(totalWeekly);
+            weeklyLabelEl.textContent = 'hours saved every week';
+
+            var monthly = totalWeekly * 4.3;
+            var yearly = totalWeekly * 50;
+            var workWeeks = yearly / 40;
+
+            document.getElementById('result-monthly').textContent = Math.round(monthly);
+            document.getElementById('result-yearly').textContent = Math.round(yearly);
+            document.getElementById('result-weeks').textContent = fmt(workWeeks);
+
+            if (totalWeekly < 3) {
+                msgEl.textContent = 'Even a few hours back means one more launch page or battlecard per week.';
+            } else if (totalWeekly <= 6) {
+                msgEl.textContent = "That\u2019s almost a full day. Imagine what you\u2019d ship with that time back.";
+            } else {
+                msgEl.textContent = "That\u2019s like adding another PMM to your team \u2014 without the headcount.";
+            }
+        }
+
+        for (var i = 0; i < categories.length; i++) {
+            document.getElementById(categories[i].slider).addEventListener('input', update);
+        }
+
+        update();
+    })();
+    </script>
 
 </body>
 </html>
